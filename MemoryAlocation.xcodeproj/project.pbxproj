@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0181CE6D21465AEE001EB09C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 0181CE6C21465AEE001EB09C /* main.c */; };
+		0181CE7521465B0F001EB09C /* malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 0181CE7421465B0F001EB09C /* malloc.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,8 @@
 
 /* Begin PBXFileReference section */
 		0181CE6921465AEE001EB09C /* MemoryAlocation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MemoryAlocation; sourceTree = BUILT_PRODUCTS_DIR; };
-		0181CE6C21465AEE001EB09C /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		0181CE7321465B0F001EB09C /* mallocheader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mallocheader.h; sourceTree = "<group>"; };
+		0181CE7421465B0F001EB09C /* malloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = malloc.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +58,8 @@
 		0181CE6B21465AEE001EB09C /* MemoryAlocation */ = {
 			isa = PBXGroup;
 			children = (
-				0181CE6C21465AEE001EB09C /* main.c */,
+				0181CE7421465B0F001EB09C /* malloc.c */,
+				0181CE7321465B0F001EB09C /* mallocheader.h */,
 			);
 			path = MemoryAlocation;
 			sourceTree = "<group>";
@@ -118,7 +120,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0181CE6D21465AEE001EB09C /* main.c in Sources */,
+				0181CE7521465B0F001EB09C /* malloc.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
