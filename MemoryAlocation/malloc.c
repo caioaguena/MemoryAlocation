@@ -52,18 +52,20 @@ void *aloca(size_t QtdBytes){
         // Percorrendo a lista...
         // Condição pra quando achamos um bloco do exato tamanho que precisavamos
         if( ((atual->tamanho) == QtdBytes) && (atual->free == 1) ){
+            printf("Tamanho exato do bloco para ser alocado\n");
+            printf("Memoria alocada - ponteiro %p\n", atual);
             atual->free = 0; // Agora o bloco está ocupado
-            resultado = (void*)(++atual);
-            printf("Tamanho certinho do bloco para ser alocado\n");
+            resultado = (void*)(atual);
             return  resultado; // Retorna o endereço inicial do bloco que foi alocado
         }
         
         // Condição pra caso o bloco encontrado ter tamanho maior que o requisitado, lembrando que deve ser maior que a QtdBytes + o tamanho da struct, precisamos desse espaço pois iremos criar outro bloco utilizando o split, assim precisando de espaço para criar uma info nova.
         // Sim, ele aloca no primeiro bloco que tem espaço o suficiente.
         else if( ((atual->tamanho) > (QtdBytes+sizeof(struct bloco))) && (atual->free == 1) ){
+            printf("Dividido bloco em 2\n");
             split(atual, QtdBytes); // Divide o bloco para se alocar somente o espaço que queremos
-            resultado = (void*)(++atual);
-            printf("Precisa repartir essa parada\n");
+            printf("Memoria alocada - ponteiro %p\n", atual);
+            resultado = (void*)(atual);
             return  resultado; // Retorna o endereço do bloco que foi alocado
         }
         
@@ -93,6 +95,7 @@ void merge(){
             flag = 1;
         }
         
+        // Se foi realizado um merge, tem que começar do começo
         if(flag == 1){
             flag = 0;
         }else{
@@ -108,11 +111,13 @@ void libera(void* ponteiroLibera){
     // Condicional para saber se o ponteiro está "dentro" do vetor de memória
     if( ((void*)memory <= ponteiroLibera) && (ponteiroLibera <= (void*)(memory + 16024) ) ){
         struct bloco *atual = ponteiroLibera;
-        --atual;
+        //--atual;
+        printf("\nMemoria liberada - ponteiro %p\n", atual);
         atual->free = 1;
         merge(); // Verifica e realiza o merge, necessário para identificar se o free deixou uma sequencia de blocos desalocados.
-        printf("Desalocado com sucesso\n");
-    }else printf("Não está no range \n");
+    }else {
+        printf("Não está no range \n");
+    }
 }
 
 void apresentaMemoria(){
@@ -120,7 +125,7 @@ void apresentaMemoria(){
     atual = blocoLivre;
     printf("\nPercorrendo a memória:\n");
     while(atual){
-        printf("Tamanho do bloco: %zu | Alocado: %d | Endereco: %zu \n", atual->tamanho, atual->free, atual);
+        printf("Tamanho do bloco: %zu | Alocado: %d | Endereco: %p \n", atual->tamanho, atual->free, atual);
         atual = atual->proximoBloco;
     }
 }
@@ -133,8 +138,8 @@ int main(){
     char *p3 = aloca(1000*sizeof(char));
 
     libera(p);
-    libera(p3);
-    libera(p1);
+//    libera(p1);
     //libera(p2);
+  //  libera(p3);
     apresentaMemoria();
 }

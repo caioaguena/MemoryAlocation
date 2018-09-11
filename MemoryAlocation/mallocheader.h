@@ -25,11 +25,5 @@ struct bloco{
 struct bloco *blocoLivre = (void*)memory;
 
 int flag = 0;
-void init();
-void split(struct bloco *espaco,size_t tamanhoRequisitado);
-void *aloca(size_t QtdBytes);
-void merge();
-void libera(void* ponteiroLibera);
-
 
 #endif 
